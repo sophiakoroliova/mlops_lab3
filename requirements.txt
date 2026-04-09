@@ -1,0 +1,6 @@
+dvc
+pyyaml
+pandas
+torch
+torchvision
+torchaudio
