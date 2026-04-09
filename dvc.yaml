@@ -1,0 +1,28 @@
+stages:
+  download:
+    cmd: python src/download_data.py
+    deps:
+      - src/download_data.py
+    outs:
+      - data/raw/train.pt
+      - data/raw/test.pt
+      - data/dataset_registry.csv
+
+  train:
+    cmd: python src/train.py
+    deps:
+      - src/train.py
+      - data/raw/train.pt
+      - data/raw/test.pt
+      - params.yaml
+    outs:
+      - models/model.pth
+
+  evaluate:
+    cmd: python src/evaluate.py
+    deps:
+      - src/evaluate.py
+      - models/model.pth
+      - params.yaml
+    outs:
+      - metrics.json
