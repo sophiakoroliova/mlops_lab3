@@ -14,7 +14,11 @@ stages:
       - src/train.py
       - data/raw/train.pt
       - data/raw/test.pt
-      - params.yaml
+    params:
+      - epochs
+      - batch_size
+      - learning_rate
+      - model.hidden_dim
     outs:
       - models/model.pth
 
@@ -23,6 +27,10 @@ stages:
     deps:
       - src/evaluate.py
       - models/model.pth
-      - params.yaml
-    metrics:
+    params:
+      - epochs
+      - batch_size
+      - learning_rate
+      - model.hidden_dim
+    outs:
       - metrics.json
