@@ -31,6 +31,10 @@ stages:
       hash: md5
       md5: 0bd6e551d3232b41924a127d97da6015
       size: 47521749
+    - path: params.yaml
+      hash: md5
+      md5: ef57b30143cdbe56e24115907e4fb3aa
+      size: 73
     - path: src/train.py
       hash: md5
       md5: 9d0ba83a623d9985dfe9600db389ef73
@@ -38,21 +42,25 @@ stages:
     params:
       params.yaml:
         batch_size: 64
-        epochs: 3
+        epochs: 5
         learning_rate: 0.01
         model.hidden_dim: 128
     outs:
     - path: models/model.pth
       hash: md5
-      md5: 722fd3ce3509512011f16301a8e06b91
+      md5: f0509127419e38a3e496811f58bceec2
       size: 409289
   evaluate:
     cmd: python src/evaluate.py
     deps:
     - path: models/model.pth
       hash: md5
-      md5: 722fd3ce3509512011f16301a8e06b91
+      md5: f0509127419e38a3e496811f58bceec2
       size: 409289
+    - path: params.yaml
+      hash: md5
+      md5: ef57b30143cdbe56e24115907e4fb3aa
+      size: 73
     - path: src/evaluate.py
       hash: md5
       md5: 858478b129898dd7e7de24ef22e565b7
@@ -60,11 +68,11 @@ stages:
     params:
       params.yaml:
         batch_size: 64
-        epochs: 3
+        epochs: 5
         learning_rate: 0.01
         model.hidden_dim: 128
     outs:
     - path: metrics.json
       hash: md5
-      md5: 34c99534da8971e389afdc377983a66d
+      md5: 1d1e5c62aa94a367569a69e3efa751d0
       size: 19

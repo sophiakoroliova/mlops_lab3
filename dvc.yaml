@@ -14,6 +14,7 @@ stages:
       - src/train.py
       - data/raw/train.pt
       - data/raw/test.pt
+      - params.yaml
     params:
       - epochs
       - batch_size
@@ -27,6 +28,7 @@ stages:
     deps:
       - src/evaluate.py
       - models/model.pth
+      - params.yaml
     params:
       - epochs
       - batch_size
